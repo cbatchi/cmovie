@@ -30,7 +30,7 @@ const Header = () => {
 
     window.addEventListener("scroll", shrinkHeader);
     return () => window.removeAddEventListener("scroll", shrinkHeader);
-  }, []);
+  }, [headerRef]);
 
   return (
     <div ref={headerRef} className="header">

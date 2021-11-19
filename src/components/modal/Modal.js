@@ -3,32 +3,35 @@ import PropTypes from 'prop-types'
 import { FaTimes } from "react-icons/fa";
 import './modal.scss';
 
-const Modal = props => {
-  const [active, setActive] = useState(false);
+const Modal = ({ active, id, children }) => {
+  const [isActive, setIsActive] = useState(false);
   useEffect(() => {
-    setActive(props.active);
-  }, [props.active])
+    setIsActive(active);
+  }, [active])
   return (
-    <div id={props.id} className={`modal ${active ? 'active' : ''}`}>
-      {props.children}
+    <div id={id} className={`modal ${ isActive ? 'active' : ''}`}>
+      {children}
     </div>
   )
 }
 
-
 Modal.propTypes = {
   active: PropTypes.bool.isRequired,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
 }
 
-export const ModalContent = props => {
+export const ModalContent = ({ onClose, children }) => {
   const contentRef = useRef(null);
   const closeModal = () => {
     contentRef.current.parentNode.classList.remove('active');
-    props.onClose && props.onClose();
+    onClose && onClose();
   }
   return <div className="modal__content">
-    {props.children}
+    {children}
     <div className="modal__content__close" onClick={closeModal}>
       <FaTimes />
     </div>
@@ -36,7 +39,11 @@ export const ModalContent = props => {
 }
 
 ModalContent.propTypes = {
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
 }
 
 export default Modal

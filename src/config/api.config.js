@@ -6,4 +6,6 @@ const apiConfig = {
   w500Image: (imagePath) => `https://image.tmdb.org/t/p/w500/${imagePath}`,
 };
 
+export const youtubeUrl = "https://www.youtube.com/embed/";
+
 export default apiConfig;
