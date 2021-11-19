@@ -3,7 +3,7 @@ import queryString from "query-string";
 import apiConfig from './api.config';
 
 const axiosClient = axios.create({
-  baseURL: apiConfig.baseUrl,
+  baseURL: apiConfig['baseUrl'],
   headers: {
     "Content-Type": "application/json",
   },
@@ -12,9 +12,7 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(async(config) => config);
 axiosClient.interceptors.response.use(response => {
-  if (response && response.data) {
-    return response.data;
-  }
+  if (response && response.data) return response.data;
   return response;
 }, err => {
   throw err;

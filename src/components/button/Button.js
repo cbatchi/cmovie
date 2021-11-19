@@ -4,21 +4,22 @@ import "./button.scss";
 
 const Button = ({ className, onClick, children }) => {
   return (
-    <div
+    <button
       className={`btn ${className}`}
       onClick={onClick ? () => onClick() : null}
     >
       {children}
-    </div>
+    </button>
   );
 };
 
-const OutlineButton = ({ children, className, onClick }) => <Button
+export const OutlineButton = ({ children, className, onClick }) => <Button
   className={`btn-outline ${className}`}
   onClick={onClick ? () => onClick() : null}
 >
   {children}
 </Button>
+
 
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
