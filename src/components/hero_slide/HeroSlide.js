@@ -36,7 +36,7 @@ const HeroSlide = () => {
         grabCursor={true}
         spaceBetween={0}
         slidesPerView={1}
-        // autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 5000 }}
       >
         {movieItem.map((item, index) => (
           <SwiperSlide key={index}>
@@ -108,6 +108,7 @@ const HeroSlideItem = ({ item, className }) => {
   );
 };
 
+
 HeroSlideItem.propTypes = {
   className: PropTypes?.string.isRequired,
   item: PropTypes?.object.isRequired,
@@ -136,3 +137,4 @@ TrailerModal.propTypes = {
 };
 
 export default HeroSlide;
+
